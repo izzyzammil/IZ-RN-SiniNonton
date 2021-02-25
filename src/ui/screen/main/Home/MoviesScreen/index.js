@@ -22,6 +22,7 @@ import api from '../../../../../helpers';
 
 const MoviesScreen = () => {
   const {user} = useContext(UserContext);
+  const [search, setSearch] = useState('');
   const [popularData, setPopularData] = useState([]);
   const [topRatedData, setTopRatedData] = useState([]);
   console.log('Api Key TMDB', TMDB_API_KEY);
@@ -48,30 +49,29 @@ const MoviesScreen = () => {
 
   return (
     <SafeAreaView style={uiStyle.baseContainer}>
+      <Space height={uiDimen.md} />
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../../../../../assets/image/logo-128.png')}
+          style={styles.logoImage}
+        />
+        <Space width={uiDimen.sm / 2} />
+        <Text style={styles.logoText}>SINI NONTON</Text>
+      </View>
+      <Space height={uiDimen.md} />
+
+      <View style={{marginHorizontal: uiDimen.lg}}>
+        <Input
+          fullCircle
+          placeholder="Search ..."
+          placeholderLeftIcon={
+            <IconM name="search" color={uiColor.placeholder} size={16} />
+          }
+          value={search}
+          onChange={(v) => setSearch(v)}></Input>
+      </View>
+      <Space height={uiDimen.md} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Space height={uiDimen.md} />
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('../../../../../assets/image/logo-128.png')}
-            style={styles.logoImage}
-          />
-          <Space width={uiDimen.sm / 2} />
-          <Text style={styles.logoText}>SINI NONTON</Text>
-        </View>
-        <Space height={uiDimen.md} />
-
-        <View style={{marginHorizontal: uiDimen.lg}}>
-          <Input
-            fullCircle
-            placeholder="Search ..."
-            placeholderLeftIcon={
-              <IconM name="search" color={uiColor.placeholder} size={16} />
-            }
-            value=""
-            onChange={() => {}}></Input>
-        </View>
-        <Space height={uiDimen.md} />
-
         <Text style={styles.headingText}> Movies</Text>
         <Space height={uiDimen.sm} />
 

@@ -22,7 +22,7 @@ const TopRatedItem = ({data, navigation}) => {
 
       <View style={styles.metaContainer}>
         <Text numberOfLines={1} style={styles.metaTitle}>
-          {data.title}
+          {data.name}
         </Text>
         {/* <Space height={uiDimen.sm / 2}></Space> */}
         <View style={styles.metaRating}>

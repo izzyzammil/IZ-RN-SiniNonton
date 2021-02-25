@@ -8,7 +8,7 @@ import {withNavigation} from '@react-navigation/compat';
 import {Space} from '../../../../../components';
 import {uiColor, uiDimen, uiStyle} from '../../../../../constants';
 
-const TopRatedItem = ({data, navigation}) => {
+const PopularItem = ({data, navigation}) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -22,9 +22,8 @@ const TopRatedItem = ({data, navigation}) => {
 
       <View style={styles.metaContainer}>
         <Text numberOfLines={1} style={styles.metaTitle}>
-          {data.title}
+          {data.name}
         </Text>
-        {/* <Space height={uiDimen.sm / 2}></Space> */}
         <View style={styles.metaRating}>
           <IconM name="star" color={uiColor.star} size={14} />
           <Space width={uiDimen.sm / 2} />
@@ -37,24 +36,27 @@ const TopRatedItem = ({data, navigation}) => {
 
 const styles = StyleSheet.create({
   ImageContainer: {
+    width: 166,
+    height: 268,
     borderRadius: uiDimen.md,
     marginHorizontal: uiDimen.sm,
   },
 
   image: {
-    width: 114,
-    height: 160,
-    borderTopLeftRadius: uiDimen.sm,
-    borderTopRightRadius: uiDimen.sm,
+    width: 166,
+    height: 268,
+    borderRadius: uiDimen.md,
   },
 
   metaContainer: {
-    width: 114,
-    flexDirection: 'column',
-    padding: uiDimen.sm,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    padding: uiDimen.md,
     backgroundColor: uiColor.accent1,
-    borderBottomLeftRadius: uiDimen.sm,
-    borderBottomRightRadius: uiDimen.sm,
+    opacity: 0.8,
+    borderBottomLeftRadius: uiDimen.md,
+    borderBottomRightRadius: uiDimen.md,
     justifyContent: 'center',
   },
 
@@ -74,8 +76,8 @@ const styles = StyleSheet.create({
   },
 });
 
-TopRatedItem.propTypes = {
+PopularItem.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default withNavigation(TopRatedItem);
+export default withNavigation(PopularItem);

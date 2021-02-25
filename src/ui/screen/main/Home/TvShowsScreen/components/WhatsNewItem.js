@@ -1,35 +1,32 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialIcons';
-import PropTypes from 'prop-types';
-import {TMDB_IMG_URL} from '@env';
-import {withNavigation} from '@react-navigation/compat';
 
 import {Space} from '../../../../../components';
 import {uiColor, uiDimen, uiStyle} from '../../../../../constants';
 
-const TopRatedItem = ({data, navigation}) => {
+const WhatsNewItem = () => {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('MovieDetail', {id: data.id});
-      }}
-      style={styles.ImageContainer}>
+    <TouchableOpacity onPress={() => {}} style={styles.ImageContainer}>
       <Image
-        source={{uri: `${TMDB_IMG_URL}${data.poster_path}`}}
+        source={require('../../../../../../assets/dummy/avenger.jpg')}
         style={styles.image}
-        resizeMode="cover"></Image>
+        resizeMode="cover"
+      />
 
       <View style={styles.metaContainer}>
         <Text numberOfLines={1} style={styles.metaTitle}>
-          {data.title}
+          Avenger End Game
         </Text>
-        {/* <Space height={uiDimen.sm / 2}></Space> */}
         <View style={styles.metaRating}>
           <IconM name="star" color={uiColor.star} size={14} />
           <Space width={uiDimen.sm / 2} />
-          <Text style={styles.metaRatingText}>{data.vote_average}</Text>
+          <Text style={styles.metaRatingText}>9.3/10</Text>
         </View>
+        <Text numberOfLines={3} style={styles.metaDescriptionText}>
+          A soldier and his team battle hordes of post apocalyptic zombies in
+          the wastelands of the Korean Peninsula.
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -42,40 +39,45 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 114,
-    height: 160,
-    borderTopLeftRadius: uiDimen.sm,
-    borderTopRightRadius: uiDimen.sm,
+    width: 95,
+    height: 134,
+    borderRadius: uiDimen.sm,
+    position: 'absolute',
+    marginLeft: uiDimen.md,
+    zIndex: 1,
   },
 
   metaContainer: {
-    width: 114,
-    flexDirection: 'column',
-    padding: uiDimen.sm,
+    width: 310,
+    height: 131,
+    padding: uiDimen.md,
     backgroundColor: uiColor.accent1,
-    borderBottomLeftRadius: uiDimen.sm,
-    borderBottomRightRadius: uiDimen.sm,
-    justifyContent: 'center',
+    borderRadius: uiDimen.sm,
+    marginVertical: uiDimen.md,
   },
 
   metaTitle: {
     ...uiStyle.textSemiBold,
     fontSize: 12,
+    paddingLeft: 110,
   },
 
   metaRating: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 110,
   },
 
   metaRatingText: {
     ...uiStyle.textSemiBold,
     fontSize: 12,
   },
+
+  metaDescriptionText: {
+    ...uiStyle.textRegular,
+    fontSize: 12,
+    paddingLeft: 110,
+  },
 });
 
-TopRatedItem.propTypes = {
-  data: PropTypes.object.isRequired,
-};
-
-export default withNavigation(TopRatedItem);
+export default WhatsNewItem;

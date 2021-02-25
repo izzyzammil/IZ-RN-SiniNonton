@@ -3,6 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import MovieDetailScreen from '../ui/screen/main/global/MovieDetailScreen';
 import BottomTab from './BottomTab';
+import UpdateProfileScreen from '../ui/screen/main/Home/AccountScreen/components/UpdateProfileScreen';
+import ChangePasswordScreen from '../ui/screen/main/Home/AccountScreen/components/ChangePasswordScreen';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +15,12 @@ const MainStack = () => {
       <Stack.Screen
         name="MovieDetail"
         component={MovieDetailScreen}></Stack.Screen>
+      <Stack.Screen
+        name="UpdateProfile"
+        component={UpdateProfileScreen}></Stack.Screen>
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePasswordScreen}></Stack.Screen>
     </Stack.Navigator>
   );
 };

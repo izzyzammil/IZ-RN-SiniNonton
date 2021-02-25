@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderColor: uiColor.primary,
   }),
   title: ({outlined}) => ({
-    ...uiStyle.textBold,
+    ...uiStyle.textMedium,
     color: outlined ? uiColor.primary : uiColor.text,
     fontSize: 16,
   }),
