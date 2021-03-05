@@ -1,60 +1,60 @@
 import uiColor from './uiColor';
 
 const uiStyle = {
-    baseContainer: {
-        flex: 1,
-        backgroundColor: uiColor.bg
-    },
+  baseContainer: {
+    flex: 1,
+    backgroundColor: uiColor.bg,
+  },
 
-    textLight: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-Light'
-    },
+  textLight: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-Light',
+  },
 
-    textLightItalic: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-LightItalic'
-    },
-    
-    textRegular: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-Regular'
-    },
+  textLightItalic: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-LightItalic',
+  },
 
-    textRegularBold: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-Bold'
-    },
+  textRegular: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-Regular',
+  },
 
-    textRegularItalic: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-Italic'
-    },
+  textRegularBold: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-Bold',
+  },
 
-    textMedium: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-Medium'
-    },
+  textRegularItalic: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-Italic',
+  },
 
-    textMediumItalic: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-MediumItalic'
-    },
+  textMedium: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-Medium',
+  },
 
-    textSemiBold: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-SemiBold'
-    },
+  textMediumItalic: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-MediumItalic',
+  },
 
-    textSemiBoldItalic: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-SemiBoldItalic'
-    },
+  textSemiBold: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-SemiBold',
+  },
 
-    textBold: {
-        color: uiColor.text,
-        fontFamily: 'Poppins-Bold'
-    },
-}
+  textSemiBoldItalic: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-SemiBoldItalic',
+  },
+
+  textBold: {
+    color: uiColor.text,
+    fontFamily: 'Poppins-Bold',
+  },
+};
 
 export default uiStyle;

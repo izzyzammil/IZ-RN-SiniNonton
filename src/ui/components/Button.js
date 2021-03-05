@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {uiDimen, uiStyle, uiColor} from '../constants';
 
-const Button = ({title, onPress, outlined = false}) => {
+const Button = ({title, onPress, outlined = false, loadingButton = false}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container({outlined})}>
-      <Text style={styles.title({outlined})}>{title}</Text>
+      {loadingButton ? (
+        <ActivityIndicator color="white" size="large" />
+      ) : (
+        <Text style={styles.title({outlined})}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 };

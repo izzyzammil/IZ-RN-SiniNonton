@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import auth from '@react-native-firebase/auth';
@@ -10,27 +10,24 @@ const SignInScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [isPassing, setIsPassing] = useState(false);
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    if (counter >= 5) {
-      setIsPassing(true);
-    }
-  }, [counter]);
+  const [loading, setLoading] = useState(false);
 
   const handleSingIn = () => {
     setError(null);
+    setLoading(true);
     if (email === '' || password === '') {
       setError('all fields can not be empty');
+      setLoading(false);
     } else {
       auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
+          setLoading(false);
           console.log('sukses login');
         })
         .catch((err) => {
           setError(err.message);
+          setLoading(false);
         });
     }
   };
@@ -80,7 +77,10 @@ const SignInScreen = ({navigation}) => {
           <Space height={uiDimen.lg}></Space>
 
           <Space height={uiDimen.sm}></Space>
-          <Button title={'Sign In'} onPress={handleSingIn}></Button>
+          <Button
+            title={'Sign In'}
+            onPress={handleSingIn}
+            loadingButton={loading}></Button>
           <Space height={uiDimen.md}></Space>
 
           <Text style={styles.question}>Don't have an account</Text>

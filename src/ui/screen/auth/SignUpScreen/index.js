@@ -1,19 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import auth from '@react-native-firebase/auth';
+import {UserContext} from '../../../../commons/contexts/user';
 
 import {Space, Input, Button} from '../../../components';
 import {uiStyle, uiDimen} from '../../../constants';
 
 const SingUpScreen = ({navigation}) => {
+  const {setUser} = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSignUp = () => {
     setError(null);
+    setLoading(true);
 
     if (name === '' || email === '' || password === '') {
       setError('all fields can not be empty');
@@ -21,10 +25,14 @@ const SingUpScreen = ({navigation}) => {
       auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-          userCredential.user.updateProfile({displayName: name});
+          userCredential.user.updateProfile({displayName: name}).then(() => {
+            setUser(auth().currentUser);
+          });
+          setLoading(false);
         })
         .catch((err) => {
           setError(err.message);
+          setLoading(false);
         });
     }
   };
@@ -51,7 +59,7 @@ const SingUpScreen = ({navigation}) => {
                 style={{
                   padding: uiDimen.sm,
                   backgroundColor: 'red',
-                  borderRadius: uiDimen.md,
+                  borderRadius: uiDimen.sm,
                   opacity: 0.8,
                 }}>
                 <Text style={{...uiStyle.textSemiBold, fontSize: 14}}>
@@ -88,7 +96,10 @@ const SingUpScreen = ({navigation}) => {
           <Space height={uiDimen.lg}></Space>
 
           <Space height={uiDimen.sm}></Space>
-          <Button title={'Sign Up'} onPress={handleSignUp}></Button>
+          <Button
+            title={'Sign Up'}
+            onPress={handleSignUp}
+            loadingButton={loading}></Button>
           <Space height={uiDimen.md}></Space>
 
           <Text style={styles.question}>Already have an account</Text>

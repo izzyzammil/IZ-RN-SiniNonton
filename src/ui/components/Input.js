@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, TextInput, View} from 'react-native';
 
 import {uiColor, uiStyle, uiDimen} from '../constants';
-import {Space} from '.';
+import Space from './Space';
 
 const Input = ({
   value,
