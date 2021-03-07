@@ -13,13 +13,11 @@ const AccountButton = ({
   onPress,
   accountOutlined = false,
   loadingButton = false,
-  disabledButton = false,
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.container({accountOutlined})}
-      disabled={disabledButton}>
+      style={styles.container({accountOutlined})}>
       {loadingButton ? (
         <ActivityIndicator color="white" size="large" />
       ) : (

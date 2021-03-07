@@ -5,8 +5,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialIcons';
 import {TMDB_API_KEY} from '@env';
@@ -16,21 +16,23 @@ import {uiDimen, uiStyle, uiColor} from '../../../../constants';
 import PopularSection from './components/PopularSection';
 import TopRatedSection from './components/TopRatedSection';
 import WhatsNewSection from './components/WhatsNewSection';
-import {UserContext} from '../../../../../commons/contexts/user';
 import api from '../../../../../helpers';
 
 const TvShowsScreen = () => {
-  const {user} = useContext(UserContext);
   const [search, setSearch] = useState('');
   const [popularData, setPopularData] = useState([]);
   const [topRatedData, setTopRatedData] = useState([]);
+  const [whatNewsData, setWhatNewsData] = useState([]);
+  const [loading, setLoading] = useState(false);
   console.log('Api Key TMDB', TMDB_API_KEY);
 
   useEffect(() => {
+    setLoading(true);
     api
       .get(`/tv/popular?api_key=${TMDB_API_KEY}`)
       .then((res) => {
         setPopularData(res.data.results);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -40,6 +42,15 @@ const TvShowsScreen = () => {
       .get(`/tv/top_rated?api_key=${TMDB_API_KEY}`)
       .then((res) => {
         setTopRatedData(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+    api
+      .get(`/tv/airing_today?api_key=${TMDB_API_KEY}`)
+      .then((res) => {
+        setWhatNewsData(res.data.results);
       })
       .catch((err) => {
         console.log(err.message);
@@ -74,13 +85,21 @@ const TvShowsScreen = () => {
         <Text style={styles.headingText}>Tv Shows</Text>
         <Space height={uiDimen.sm} />
 
+        {loading && (
+          <View>
+            <ActivityIndicator color="white" size="small">
+              {loading}
+            </ActivityIndicator>
+          </View>
+        )}
+
         <PopularSection data={popularData} />
         <Space height={uiDimen.lg} />
 
         <TopRatedSection data={topRatedData} />
         <Space height={uiDimen.lg} />
 
-        <WhatsNewSection />
+        <WhatsNewSection data={whatNewsData} />
       </ScrollView>
     </SafeAreaView>
   );

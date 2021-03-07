@@ -21,13 +21,14 @@ import VideosSection from './components/VideosSection';
 
 const MovieDetailScreen = ({route}) => {
   const id = route.params.id;
+  const link = route.params.link;
   const [detail, setDetail] = useState(null);
   const [credits, setCredits] = useState([]);
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     api
-      .get(`/movie/${id}?api_key=${TMDB_API_KEY}`)
+      .get(`/${link}/${id}?api_key=${TMDB_API_KEY}`)
       .then((res) => {
         setDetail(res.data);
       })
@@ -36,7 +37,7 @@ const MovieDetailScreen = ({route}) => {
       });
 
     api
-      .get(`/movie/${id}/credits?api_key=${TMDB_API_KEY}`)
+      .get(`/${link}/${id}/credits?api_key=${TMDB_API_KEY}`)
       .then((res) => {
         setCredits(res.data);
       })
@@ -45,7 +46,7 @@ const MovieDetailScreen = ({route}) => {
       });
 
     api
-      .get(`/movie/${id}/videos?api_key=${TMDB_API_KEY}`)
+      .get(`/${link}/${id}/videos?api_key=${TMDB_API_KEY}`)
       .then((res) => {
         setVideos(res.data.results);
       })

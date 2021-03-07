@@ -12,7 +12,7 @@ const TopRatedItem = ({data, navigation}) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('MovieDetail', {id: data.id});
+        navigation.navigate('MovieDetail', {id: data.id, link: 'tv'});
       }}
       style={styles.ImageContainer}>
       <Image

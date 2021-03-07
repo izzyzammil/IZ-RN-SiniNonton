@@ -1,31 +1,37 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import IconM from 'react-native-vector-icons/MaterialIcons';
+import PropTypes from 'prop-types';
+import {TMDB_IMG_URL} from '@env';
+import {withNavigation} from '@react-navigation/compat';
 
 import {Space} from '../../../../../components';
 import {uiColor, uiDimen, uiStyle} from '../../../../../constants';
 
-const WhatsNewItem = () => {
+const WhatsNewItem = ({data, navigation}) => {
   return (
-    <TouchableOpacity onPress={() => {}} style={styles.ImageContainer}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('MovieDetail', {id: data.id, link: 'movie'});
+      }}
+      style={styles.ImageContainer}>
       <Image
-        source={require('../../../../../../assets/dummy/avenger.jpg')}
+        source={{uri: `${TMDB_IMG_URL}${data.poster_path}`}}
         style={styles.image}
         resizeMode="cover"
       />
 
       <View style={styles.metaContainer}>
         <Text numberOfLines={1} style={styles.metaTitle}>
-          Avenger End Game
+          {data.title}
         </Text>
         <View style={styles.metaRating}>
           <IconM name="star" color={uiColor.star} size={14} />
           <Space width={uiDimen.sm / 2} />
-          <Text style={styles.metaRatingText}>9.3/10</Text>
+          <Text style={styles.metaRatingText}>{data.vote_average}</Text>
         </View>
         <Text numberOfLines={3} style={styles.metaDescriptionText}>
-          A soldier and his team battle hordes of post apocalyptic zombies in
-          the wastelands of the Korean Peninsula.
+          {data.overview}
         </Text>
       </View>
     </TouchableOpacity>
@@ -80,4 +86,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WhatsNewItem;
+WhatsNewItem.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+export default withNavigation(WhatsNewItem);

@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {Space} from '../../../../../components';
 import {uiDimen, uiStyle} from '../../../../../constants';
 import WhatsNewItem from './WhatsNewItem';
 
-const WhatsNewSection = () => {
+const WhatsNewSection = ({data}) => {
   return (
     <>
       <View style={styles.headingContainer}>
@@ -20,8 +15,11 @@ const WhatsNewSection = () => {
       <Space height={uiDimen.sm}></Space>
 
       <ScrollView marginHorizontal={uiDimen.md}>
-        <WhatsNewItem />
-        <WhatsNewItem />
+        {data.map((item, index) => {
+          if (index <= 9) {
+            return <WhatsNewItem key={index} data={item} />;
+          }
+        })}
       </ScrollView>
     </>
   );
@@ -36,5 +34,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+WhatsNewSection.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default WhatsNewSection;

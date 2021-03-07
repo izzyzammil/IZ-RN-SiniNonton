@@ -19,7 +19,6 @@ const UpdateProfileScreen = ({navigation}) => {
   const [name, setName] = useState(user.displayName);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const disable = false;
 
   const handleUpdateProfile = () => {
     setError(null);
@@ -100,7 +99,6 @@ const UpdateProfileScreen = ({navigation}) => {
           title="UPDATE"
           onPress={handleUpdateProfile}
           loadingButton={loading}
-          disabledButton={disable}
         />
       </View>
     </SafeAreaView>
