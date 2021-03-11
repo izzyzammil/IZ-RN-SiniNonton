@@ -1,11 +1,12 @@
 import React from 'react';
-import {Image, View, Text} from 'react-native';
+import {Image, View, Text, TouchableOpacity} from 'react-native';
 import {TMDB_IMG_CAST_URL} from '@env';
+import {withNavigation} from '@react-navigation/compat';
 
 import {Space} from '../../../../../components';
 import {uiDimen, uiStyle} from '../../../../../constants';
 
-const CastSection = ({data}) => {
+const CastSection = ({data, navigation}) => {
   return (
     <View style={{paddingHorizontal: uiDimen.lg}}>
       <Text style={{...uiStyle.textSemiBold, fontSize: 16}}>Cast</Text>
@@ -13,7 +14,10 @@ const CastSection = ({data}) => {
 
       {data?.map((item, index) => {
         return (
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('BiographyDetail', {id: item.id});
+            }}
             key={index}
             style={{flexDirection: 'row', marginBottom: uiDimen.md}}>
             <Image
@@ -29,11 +33,11 @@ const CastSection = ({data}) => {
                 {item?.character}
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </View>
   );
 };
 
-export default CastSection;
+export default withNavigation(CastSection);

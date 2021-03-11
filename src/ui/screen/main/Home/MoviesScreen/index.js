@@ -82,7 +82,7 @@ const MoviesScreen = () => {
       </View>
       <Space height={uiDimen.md} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.headingText}> Movies</Text>
+        <Text style={styles.headingText}>Movies</Text>
         <Space height={uiDimen.sm} />
 
         {loading && (

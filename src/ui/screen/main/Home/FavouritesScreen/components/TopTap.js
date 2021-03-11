@@ -52,6 +52,7 @@ const TopTap = () => {
           activeTintColor: uiColor.primary,
           inactiveTintColor: uiColor.accent1,
           style: {backgroundColor: uiColor.bg},
+          indicatorStyle: {backgroundColor: uiColor.primary},
         }}>
         <Tab.Screen name="Movies" component={FavMoviesScreen} />
         <Tab.Screen name="Tv Shows" component={FavTvShowsScreen} />
